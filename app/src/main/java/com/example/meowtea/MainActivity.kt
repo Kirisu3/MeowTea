@@ -7,11 +7,12 @@ import com.example.meowtea.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    val binding : ActivityMainBinding
+    private lateinit var binding: MainActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        replaceFragment()
+        binding = MainActivity.inflate(layoutInflater) // Corrected the binding initialization
+        setContentView(binding.root)
+        replaceFragment(this, StoreFragment)
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -26,11 +27,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-         fun replaceFragment(fragment: Fragment) {
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_layout, fragment)
-            fragmentTransaction.commit()
-        }
+
+    }
+
+    fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }
