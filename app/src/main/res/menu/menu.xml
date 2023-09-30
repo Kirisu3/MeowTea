@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="store"
+        android:id="@+id/store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Menu"
-        android:icon="@drawable/baseline_storefront_24"/>
+        android:title="@string/menu"
+        android:icon="@drawable/menu1_placeholder"/>
     <item
-        android:id="cart"
+        android:id="@+id/cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Order"
+        android:title="@string/order"
         android:icon="@drawable/baseline_shopping_basket_24"/>
 </menu>

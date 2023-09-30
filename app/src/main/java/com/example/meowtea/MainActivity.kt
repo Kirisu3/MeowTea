@@ -5,32 +5,33 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.meowtea.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: MainActivity
+    private lateinit var binding: ActivityMainBinding
+    private val storeFragment = StoreFragment()
+    private val cartFragment = CartFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivity.inflate(layoutInflater) // Corrected the binding initialization
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(this, StoreFragment)
-
+        replaceFragment(storeFragment)
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
+
             when (item.itemId) {
                 R.id.store -> {
-                    // Handle home item
+                    replaceFragment(storeFragment)
                 }
                 R.id.cart -> {
-                    // Handle profile item
+                    replaceFragment(cartFragment)
                 }
-
             }
             true
         }
-
-
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
