@@ -51,7 +51,7 @@ class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(con
         )
     """.trimIndent())
 
-        // TODO NOTE insert initial data here if fallout
+        // NOTE insert initial data here if fallout
         // Example:
         // db?.execSQL("INSERT INTO MilkTea (id,name, description, price, imagePath) VALUES ('Green Tea', 'Refreshing tea', 3.99, 'tea_image.jpg')")
     }
@@ -62,6 +62,6 @@ class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(con
             db?.execSQL("ALTER TABLE MilkTea ADD COLUMN new_column TEXT")
         }
 
-        // Handle other upgrade scenarios as needed
+        // TODO make test populate milktea.db > put into assets (android studio) > continue ugh
     }
 }
