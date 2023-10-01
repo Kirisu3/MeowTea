@@ -1,8 +1,11 @@
 package com.example.meowtea
 
+import MilkTeaAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.meowtea.databinding.ActivityMainBinding
 
 
@@ -29,6 +32,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        val adapter = MilkTeaAdapter(this, yourMilkTeaDataList) // Replace with your data
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -37,4 +45,6 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
+
+
 }
