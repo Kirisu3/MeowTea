@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meowtea.MilkTea
 import com.example.meowtea.R
+import com.squareup.picasso.Picasso
 
 class MilkTeaAdapter(private val context: Context, private val data: List<MilkTea>) :
     RecyclerView.Adapter<MilkTeaAdapter.MilkTeaViewHolder>() {

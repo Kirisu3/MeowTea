@@ -22,11 +22,11 @@ class MilkTeaDatabaseHelper(context: Context) :
         const val DATABASE_NAME = "MilkTea.db"
     }
 
-    // Create or open the database
+    // Create / open the database
     val dbHelper = MilkTeaDatabaseHelper(context)
     val db = dbHelper.writableDatabase
 
-    // Define values to insert
+    // D values to insert
     val values = ContentValues().apply {
         put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_NAME, "Green Tea")
         put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_DESCRIPTION, "Refreshing green tea with milk and booba")
@@ -34,7 +34,7 @@ class MilkTeaDatabaseHelper(context: Context) :
         put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_IMAGE, "path_to_image") //image-vector
     }
 
-    // Insert the row
+    // Insert row
     val newRowId = db?.insert(MilkTeaContract.MilkTeaEntry.TABLE_NAME, null, values)
 
     fun queryMilkTeaItems(){
