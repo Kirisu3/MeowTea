@@ -1,74 +1,67 @@
-import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.io.FileOutputStream
 
-class MilkTeaDatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-    override fun onCreate(db: SQLiteDatabase) {
-        // Create the database schema here
-        db.execSQL(MilkTeaContract.SQL_CREATE_ENTRIES)
-    }
-
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // Handle database upgrades (e.g., altering tables)
-        db.execSQL(MilkTeaContract.SQL_DELETE_ENTRIES)
-        onCreate(db)
-    }
+class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = "MilkTea.db"
+        private const val DATABASE_NAME = "MilkTea.db"
+        private const val DATABASE_VERSION = 1
     }
 
-    // Create / open the database
-    val dbHelper = MilkTeaDatabaseHelper(context)
-    val db = dbHelper.writableDatabase
+    init {
 
-    // D values to insert
-    val values = ContentValues().apply {
-        put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_NAME, "Green Tea")
-        put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_DESCRIPTION, "Refreshing green tea with milk and booba")
-        put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_PRICE, 39.99)
-        put(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_IMAGE, "path_to_image") //image-vector
-    }
+        if (!checkDatabase()) {
 
-    // Insert row
-    val newRowId = db?.insert(MilkTeaContract.MilkTeaEntry.TABLE_NAME, null, values)
-
-    fun queryMilkTeaItems(){
-        val projection = arrayOf(
-            MilkTeaContract.MilkTeaEntry.COLUMN_NAME_NAME,
-            MilkTeaContract.MilkTeaEntry.COLUMN_NAME_DESCRIPTION,
-            MilkTeaContract.MilkTeaEntry.COLUMN_NAME_PRICE,
-            MilkTeaContract.MilkTeaEntry.COLUMN_NAME_IMAGE // Include the image column
-        )
-
-        val cursor = db?.query(
-            MilkTeaContract.MilkTeaEntry.TABLE_NAME,
-            projection,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-
-        cursor?.use {
-            while (it.moveToNext()) {
-                val name = it.getString(it.getColumnIndexOrThrow(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_NAME))
-                val description = it.getString(it.getColumnIndexOrThrow(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_DESCRIPTION))
-                val price = it.getDouble(it.getColumnIndexOrThrow(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_PRICE))
-                val imagePath = it.getString(it.getColumnIndexOrThrow(MilkTeaContract.MilkTeaEntry.COLUMN_NAME_IMAGE))
-
-                // Load and display the image using the 'imagePath'
-                // Process other retrieved data
-            }
+            copyDatabase()
         }
     }
 
+    private fun checkDatabase(): Boolean {
+        val dbFile = context.getDatabasePath(DATABASE_NAME)
+        return dbFile.exists()
+    }
 
+    private fun copyDatabase() {
+        val inputStream = context.assets.open(DATABASE_NAME)
+        val outputPath = context.getDatabasePath(DATABASE_NAME).absolutePath
+
+        val outputStream = FileOutputStream(outputPath)
+        val buffer = ByteArray(1024)
+        var length: Int
+
+        while (inputStream.read(buffer).also { length = it } > 0) {
+            outputStream.write(buffer, 0, length)
+        }
+
+        outputStream.flush()
+        outputStream.close()
+        inputStream.close()
+    }
+
+    override fun onCreate(db: SQLiteDatabase?) {
+        db?.execSQL("""
+        CREATE TABLE IF NOT EXISTS MilkTea (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            description TEXT,
+            price REAL,
+            imagePath TEXT
+        )
+    """.trimIndent())
+
+        // TODO NOTE insert initial data here if fallout
+        // Example:
+        // db?.execSQL("INSERT INTO MilkTea (id,name, description, price, imagePath) VALUES ('Green Tea', 'Refreshing tea', 3.99, 'tea_image.jpg')")
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        if (oldVersion < 2) {
+            // Upgrade from version 1 to version 2
+            db?.execSQL("ALTER TABLE MilkTea ADD COLUMN new_column TEXT")
+        }
+
+        // Handle other upgrade scenarios as needed
+    }
 }
-
-
