@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        val adapter = MilkTeaAdapter(this, yourMilkTeaDataList) // Replace with your data
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        //val adapter = MilkTeaAdapter(this, yourMilkTeaDataList) // Replace with your data
+        //recyclerView.adapter = adapter
+        //recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun replaceFragment(fragment: Fragment) {
