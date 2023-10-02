@@ -13,9 +13,9 @@ class MilkTeaAdapter(private val context: Context, private val data: List<MilkTe
     RecyclerView.Adapter<MilkTeaAdapter.MilkTeaViewHolder>() {
 
     inner class MilkTeaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Define views in the ViewHolder
+        // view-holder
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
+        //val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView) beta
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
     }
@@ -29,12 +29,12 @@ class MilkTeaAdapter(private val context: Context, private val data: List<MilkTe
     override fun onBindViewHolder(holder: MilkTeaViewHolder, position: Int) {
         val currentItem = data[position]
 
-        // Bind data to the ViewHolder views
+        // data to the ViewHolder views
         holder.nameTextView.text = currentItem.name
-        holder.descriptionTextView.text = currentItem.description
+        //holder.descriptionTextView.text = currentItem.description beta
         holder.priceTextView.text = currentItem.price.toString()
 
-        // Load and display the image using a library like Picasso or Glide
+        // TODO picasso or glide test
         Picasso.get().load(currentItem.imagePath).into(holder.imageView)
     }
 

@@ -6,8 +6,14 @@ import java.io.FileOutputStream
 class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
+
         private const val DATABASE_NAME = "MilkTea.db"
         private const val DATABASE_VERSION = 1
+        const val TABLE_NAME = "milktea"
+        const val COLUMN_ID = "id"
+        const val COLUMN_NAME = "name"
+        const val COLUMN_PRICE = "price"
+        const val COLUMN_IMAGE_PATH = "imagePath"
     }
 
     init {
@@ -41,27 +47,15 @@ class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(con
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("""
-        CREATE TABLE IF NOT EXISTS MilkTea (
-            _id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            description TEXT,
-            price REAL,
-            imagePath TEXT
-        )
-    """.trimIndent())
-
-        // TODO NOTE insert initial data here if fallout
-        // Example:
-        // db?.execSQL("INSERT INTO MilkTea (id,name, description, price, imagePath) VALUES ('Green Tea', 'Refreshing tea', 3.99, 'tea_image.jpg')")
+        // NOTE insert initial data here if death aa
+        // db?.execSQL("INSERT INTO MilkTea (id,name, price, imagePath) VALUES ('Green Tea', 'Refreshing tea', 3.99, 'tea_image.jpg')")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         if (oldVersion < 2) {
-            // Upgrade from version 1 to version 2
-            db?.execSQL("ALTER TABLE MilkTea ADD COLUMN new_column TEXT")
+
         }
 
-        // Handle other upgrade scenarios as needed
+        // TODO make test populate milktea.db > put into assets (android studio) > continue ugh
     }
 }
