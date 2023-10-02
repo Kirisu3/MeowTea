@@ -1,4 +1,7 @@
 package com.example.meowtea
+
+import LocalMilkTeaDataSource
+import MilkTeaAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,82 +10,38 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meowtea.databinding.FragmentStoreBinding
-
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class StoreFragment : Fragment() {
-
     private lateinit var binding: FragmentStoreBinding
-    lateinit var imgList: Array<Int>
-    lateinit var productname: Array<String>
-    lateinit var productdescription: Array<String>
-    lateinit var productprice: Array<Int>
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentStoreBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.setHasFixedSize(true)
+        // Create an instance of LocalMilkTeaDataSource
+        val dataSource = LocalMilkTeaDataSource(requireContext())
 
-        imgList = arrayOf(
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-            R.drawable.noun_bubble_milk_tea_2216050,
-        )
-        productname = arrayOf(
-            "Bogart1",
-            "Bogart2",
-            "Bogart3",
-            "Bogart4",
-            "Bogart5",
-            "Bogart6",
-            "Bogart7",
-            "Bogart8",
-            "Bogart9",
-            "Bogart10",
-        )
+        // Use a coroutine to fetch milk tea data asynchronously
+        GlobalScope.launch(Dispatchers.IO) {
+            val milkTeaList = dataSource.getAllMilkTeas()
 
-        productdescription = arrayOf(
-            "descrip 1",
-            "descrip 2",
-            "descrip 3",
-            "descrip 4",
-            "descrip 6",
-            "descrip 7",
-            "descrip 8",
-            "descrip 9",
-            "descrip 10",
-        )
+            // Update the UI on the main thread
+            requireActivity().runOnUiThread {
+                //RecyclerView to display the milk teas
+                val recyclerView: RecyclerView = binding.recyclerView
+                val adapter = MilkTeaAdapter(requireContext(), milkTeaList)
+                // Replace with your data
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            }
+        }
 
-        productprice = arrayOf(
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10
-        )
-
-
-
-
-        return binding.root
+        return view
     }
-
 }
