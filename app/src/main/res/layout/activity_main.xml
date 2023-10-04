@@ -6,6 +6,15 @@
     android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/QRscanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="QRScanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="2dp" />
+
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"

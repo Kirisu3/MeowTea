@@ -1,7 +1,9 @@
 package com.example.meowtea
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.meowtea.databinding.ActivityMainBinding
 
@@ -11,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val storeFragment = StoreFragment()
     private val cartFragment = CartFragment()
+    private val qrFragment = QR_Scanner()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +33,10 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        //val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        //val adapter = MilkTeaAdapter(this, yourMilkTeaDataList) // Replace with your data
-        //recyclerView.adapter = adapter
-        //recyclerView.layoutManager = LinearLayoutManager(this)
+        val QRButton = findViewById<Button>(R.id.QRscanner)
+        QRButton.setOnClickListener {
+            replaceFragment(qrFragment)
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
