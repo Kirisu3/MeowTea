@@ -2,6 +2,7 @@ package com.example.meowtea
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.example.meowtea.databinding.ActivityMainBinding
 
@@ -13,7 +14,9 @@ class MainActivity : AppCompatActivity() {
     private val cartFragment = CartFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+       super.onCreate(savedInstanceState)
+        Thread.sleep(3000)
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(storeFragment)
