@@ -6,8 +6,7 @@ import java.io.FileOutputStream
 class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-
-        private const val DATABASE_NAME = "MilkTea.db"
+        private const val DATABASE_NAME = "MilkTeaTEST.db"
         private const val DATABASE_VERSION = 1
         const val TABLE_NAME = "milktea"
         const val COLUMN_ID = "id"
@@ -17,9 +16,7 @@ class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(con
     }
 
     init {
-
         if (!checkDatabase()) {
-
             copyDatabase()
         }
     }
@@ -30,8 +27,14 @@ class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(con
     }
 
     private fun copyDatabase() {
-        val inputStream = context.assets.open(DATABASE_NAME)
+        // Specify the new path for the output database file
         val outputPath = context.getDatabasePath(DATABASE_NAME).absolutePath
+
+        // Specify the new location in the assets directory
+        val inputFileName = "databases/MilkTeaTEST.db" // Assuming your database is in "app/main/assets/databases"
+
+        // Open the input stream from the specified location
+        val inputStream = context.assets.open(inputFileName)
 
         val outputStream = FileOutputStream(outputPath)
         val buffer = ByteArray(1024)
@@ -47,15 +50,10 @@ class MilkTeaDatabaseHelper(private val context: Context) : SQLiteOpenHelper(con
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        // NOTE insert initial data here if death aa
-        // db?.execSQL("INSERT INTO MilkTea (id,name, price, imagePath) VALUES ('Green Tea', 'Refreshing tea', 3.99, 'tea_image.jpg')")
+        // NOTE: You can insert initial data here if needed
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < 2) {
-
-        }
-
-        // TODO make test populate milktea.db > put into assets (android studio) > continue ugh
+        // Handle database upgrades here
     }
 }
