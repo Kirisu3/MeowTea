@@ -4,55 +4,85 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.meowtea.databinding.FragmentStoreBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [StoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StoreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentStoreBinding
+    lateinit var imgList: Array<Int>
+    lateinit var productname: Array<String>
+    lateinit var productdescription: Array<String>
+    lateinit var productprice: Array<Int>
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store, container, false)
+    ): View {
+        binding = FragmentStoreBinding.inflate(inflater, container, false)
+
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
+        imgList = arrayOf(
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+            R.drawable.noun_bubble_milk_tea_2216050,
+        )
+        productname = arrayOf(
+            "Bogart1",
+            "Bogart2",
+            "Bogart3",
+            "Bogart4",
+            "Bogart5",
+            "Bogart6",
+            "Bogart7",
+            "Bogart8",
+            "Bogart9",
+            "Bogart10",
+        )
+
+        productdescription = arrayOf(
+            "descrip 1",
+            "descrip 2",
+            "descrip 3",
+            "descrip 4",
+            "descrip 6",
+            "descrip 7",
+            "descrip 8",
+            "descrip 9",
+            "descrip 10",
+        )
+
+        productprice = arrayOf(
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        )
+
+
+
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment StoreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            StoreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
