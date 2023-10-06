@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.meowtea.AppDatabase
 import com.example.meowtea.R
 import com.example.meowtea.databinding.FragmentStoreBinding
 import kotlinx.coroutines.Dispatchers
