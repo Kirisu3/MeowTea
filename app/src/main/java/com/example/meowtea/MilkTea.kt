@@ -1,9 +1,11 @@
-package com.example.meowtea
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class MilkTea(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val name: String,
-    //val description: String, beta
     val price: Double,
-    val imagePath: String
+    val image: String
 )

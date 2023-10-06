@@ -53,6 +53,8 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime:2.3.1")
     implementation ("androidx.lifecycle:lifecycle-livedata:2.3.1")
     implementation ("androidx.lifecycle:lifecycle-common-java8:2.3.1")
+    implementation ("androidx.room:room-runtime:2.3.0")
+
 
 
 }
