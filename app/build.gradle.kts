@@ -54,6 +54,9 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata:2.3.1")
     implementation ("androidx.lifecycle:lifecycle-common-java8:2.3.1")
     implementation ("androidx.room:room-runtime:2.3.0")
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+
 
 
 

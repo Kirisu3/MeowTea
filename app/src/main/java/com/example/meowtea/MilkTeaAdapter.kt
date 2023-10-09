@@ -1,6 +1,7 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meowtea.R
 
 class MilkTeaAdapter(private val milkTeaList: List<MilkTea>) : RecyclerView.Adapter<MilkTeaViewHolder>() {
@@ -14,8 +15,8 @@ class MilkTeaAdapter(private val milkTeaList: List<MilkTea>) : RecyclerView.Adap
         val milkTea = milkTeaList[position]
         holder.nameTextView.text = milkTea.name
         holder.priceTextView.text = "Price: $${milkTea.price}"
-        // You can load the image using an image loading library like Glide or Picasso
-        // Example: Glide.with(holder.imageView.context).load(milkTea.image).into(holder.imageView)
+        // try Picasso if fail
+        Glide.with(holder.imageView.context).load(milkTea.image).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {

@@ -27,8 +27,8 @@ class StoreFragment : Fragment() {
 
         // Use GlobalScope.launch for coroutines
         GlobalScope.launch(Dispatchers.Main) {
+            val milkTeaDao = AppDatabase.getInstance(requireContext()).milkTeaDao()
             val milkTeaList: List<MilkTea> = withContext(Dispatchers.IO) {
-                val milkTeaDao = AppDatabase.getInstance(requireContext()).milkTeaDao()
                 milkTeaDao.getAllMilkTeas()
             }
 
