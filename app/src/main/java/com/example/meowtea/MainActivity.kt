@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val db = AppDatabase.getInstance(applicationContext)
         val milkTeaDao = db.milkTeaDao()
 
-        val milktea1 = MilkTea(1, "Wintermelon", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
+        val milktea1 = MilkTea(1, "Winter melon", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
         val milktea2 = MilkTea(2, "Chocolate", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
         val milktea3 = MilkTea(3, "Dark Choco", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
         val milktea4 = MilkTea(4, "Okinawa", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
