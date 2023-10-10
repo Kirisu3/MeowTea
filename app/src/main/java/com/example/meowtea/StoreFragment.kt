@@ -22,10 +22,10 @@ class StoreFragment : Fragment() {
         binding = FragmentStoreBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Move these lines inside the view creation
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        // Use GlobalScope.launch for coroutines
+        //
         GlobalScope.launch(Dispatchers.Main) {
             val milkTeaDao = AppDatabase.getInstance(requireContext()).milkTeaDao()
             val milkTeaList: List<MilkTea> = withContext(Dispatchers.IO) {
