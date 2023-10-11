@@ -1,3 +1,5 @@
+package com.example.meowtea.database
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

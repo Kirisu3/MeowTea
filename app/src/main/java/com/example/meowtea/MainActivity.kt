@@ -1,11 +1,11 @@
 package com.example.meowtea
 
-import AppDatabase
-import MilkTea
 import StoreFragment
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.meowtea.database.AppDatabase
+import com.example.meowtea.database.MilkTea
 import com.example.meowtea.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        //val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        //val adapter = MilkTeaAdapter(this, yourMilkTeaDataList) // Replace with your data
-        //recyclerView.adapter = adapter
-        //recyclerView.layoutManager = LinearLayoutManager(this)
 
         val db = AppDatabase.getInstance(applicationContext)
         val milkTeaDao = db.milkTeaDao()

@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meowtea.R
+import com.example.meowtea.database.AppDatabase
+import com.example.meowtea.database.MilkTea
+import com.example.meowtea.database.MilkTeaAdapter
 import com.example.meowtea.databinding.FragmentStoreBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -25,7 +28,7 @@ class StoreFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        //
+
         GlobalScope.launch(Dispatchers.Main) {
             val milkTeaDao = AppDatabase.getInstance(requireContext()).milkTeaDao()
             val milkTeaList: List<MilkTea> = withContext(Dispatchers.IO) {
