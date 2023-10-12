@@ -1,18 +1,20 @@
 package com.example.meowtea
 
-import LocalMilkTeaDataSource
-import MilkTeaAdapter
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meowtea.database.AppDatabase
+import com.example.meowtea.database.MilkTea
+import com.example.meowtea.database.MilkTeaAdapter
 import com.example.meowtea.databinding.FragmentStoreBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StoreFragment : Fragment() {
     private lateinit var binding: FragmentStoreBinding
@@ -24,22 +26,20 @@ class StoreFragment : Fragment() {
         binding = FragmentStoreBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Create an instance of LocalMilkTeaDataSource
-        val dataSource = LocalMilkTeaDataSource(requireContext())
 
-        // Use a coroutine to fetch milk tea data asynchronously
-        GlobalScope.launch(Dispatchers.IO) {
-            val milkTeaList = dataSource.getAllMilkTeas()
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-            // Update the UI on the main thread
-            requireActivity().runOnUiThread {
-                //RecyclerView to display the milk teas
-                val recyclerView: RecyclerView = binding.recyclerView
-                val adapter = MilkTeaAdapter(requireContext(), milkTeaList)
-                // Replace with your data
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val milkTeaDao = AppDatabase.getInstance(requireContext()).milkTeaDao()
+            val milkTeaList: List<MilkTea> = withContext(Dispatchers.IO) {
+                milkTeaDao.getAllMilkTeas()
             }
+
+            val adapter = MilkTeaAdapter(milkTeaList)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
         }
 
         return view
