@@ -56,6 +56,7 @@ dependencies {
     implementation ("com.google.zxing:core:3.4.1")
     implementation ("com.github.bumptech.glide:glide:4.14.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    implementation ("androidx.core:core-splashscreen:1.0.0")
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel:2.4.1")
     implementation ("androidx.lifecycle:lifecycle-runtime:2.4.1")

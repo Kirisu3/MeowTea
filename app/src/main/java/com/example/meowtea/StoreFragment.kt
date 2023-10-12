@@ -1,3 +1,5 @@
+package com.example.meowtea
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -5,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.meowtea.R
 import com.example.meowtea.database.AppDatabase
 import com.example.meowtea.database.MilkTea
 import com.example.meowtea.database.MilkTeaAdapter
