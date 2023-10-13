@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.meowtea.R
 
 class MilkTeaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val textViewName: TextView = itemView.findViewById(R.id.tv_title)
     val imageView: ImageView = itemView.findViewById(R.id.ivProduct)
-    val nameTextView: TextView = itemView.findViewById(R.id.tv_title)
-    //val descriptionTextView: TextView = itemView.findViewById(R.id.tvDescription)
-    //val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
 }

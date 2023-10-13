@@ -67,7 +67,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-common-java8:2.6.2")
     implementation ("androidx.room:room-runtime:2.5.2")
     implementation ("androidx.room:room-ktx:2.5.2")
-    implementation ("androidx.room:room-compiler:2.5.2")
+    annotationProcessor ("androidx.room:room-compiler:2.5.2")
 
 
 

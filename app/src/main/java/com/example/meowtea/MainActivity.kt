@@ -4,6 +4,7 @@ package com.example.meowtea
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.meowtea.database.AppDatabase
 import com.example.meowtea.databinding.ActivityMainBinding
 
@@ -14,7 +15,9 @@ class MainActivity : AppCompatActivity() {
     private val storeFragment = StoreFragment()
     private val cartFragment = CartFragment()
 
-    private lateinit var appDb : AppDatabase
+    private val milkTeaDatabase: AppDatabase by lazy {
+        AppDatabase.create(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,19 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        // Get all of the milk teas in the database
+        val milkTeas = milkTeaDatabase.milkTeaDao().getAll()
+
+        // Create the milk tea adapter
+        val milkTeaAdapter = MilkTeaAdapter(milkTeas)
+
+        // Set the adapter for the RecyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.adapter = milkTeaAdapter
+
     }
+
+
 
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
