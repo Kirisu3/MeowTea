@@ -9,6 +9,6 @@ interface MilkTeaDao {
     @Insert
     suspend fun insert(milkTea: MilkTea)
 
-    @Query("SELECT * FROM MilkTea")
-    suspend fun getAllMilkTeas(): List<MilkTea>
+    @Query("SELECT * FROM MilkTeaTable")
+    fun getAllMilkTeas(): List<MilkTea>
 }

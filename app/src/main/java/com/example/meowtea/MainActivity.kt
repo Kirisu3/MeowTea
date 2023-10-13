@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private val storeFragment = StoreFragment()
     private val cartFragment = CartFragment()
 
+    private lateinit var appDb : AppDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,8 +38,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val db = AppDatabase.getInstance(applicationContext)
-        val milkTeaDao = db.milkTeaDao()
+
 
         val milktea1 = MilkTea(1, "Winter melon", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
         val milktea2 = MilkTea(2, "Chocolate", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
@@ -45,10 +46,10 @@ class MainActivity : AppCompatActivity() {
         val milktea4 = MilkTea(4, "Okinawa", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
 
         GlobalScope.launch(Dispatchers.IO){
-            milkTeaDao.insert(milktea1)
-            milkTeaDao.insert(milktea2)
-            milkTeaDao.insert(milktea3)
-            milkTeaDao.insert(milktea4)
+            appDb.milkTeaDao().insert(milktea1)
+            appDb.milkTeaDao().insert(milktea2)
+            appDb.milkTeaDao().insert(milktea3)
+            appDb.milkTeaDao().insert(milktea4)
         }
     }
 

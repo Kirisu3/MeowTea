@@ -10,20 +10,22 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun milkTeaDao(): MilkTeaDao
 
     companion object {
+
+        @Volatile
         private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
-                synchronized(AppDatabase::class) {
+                synchronized(AppDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
                         "milktea-database"
-                    ).build()
+                    )
+                        .build()
                 }
             }
             return INSTANCE!!
         }
     }
 }
-
