@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+
 }
 
 
@@ -34,15 +35,17 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
 }
 
 
+
+
 dependencies {
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.10")
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
@@ -58,14 +61,13 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
     implementation ("androidx.core:core-splashscreen:1.0.0")
 
-    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.4.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime:2.4.1")
-    implementation ("androidx.lifecycle:lifecycle-livedata:2.4.1")
-    implementation ("androidx.lifecycle:lifecycle-common-java8:2.4.1")
-    implementation ("androidx.room:room-runtime:2.4.2")
-    implementation ("androidx.room:room-ktx:2.4.2")
-    implementation ("androidx.room:room-runtime:2.4.2")
-    kapt ("androidx.room:room-compiler:2.5.2")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-common-java8:2.6.2")
+    implementation ("androidx.room:room-runtime:2.5.2")
+    implementation ("androidx.room:room-ktx:2.5.2")
+    implementation ("androidx.room:room-compiler:2.5.2")
 
 
 

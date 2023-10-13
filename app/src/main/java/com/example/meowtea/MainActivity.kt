@@ -7,9 +7,6 @@ import androidx.fragment.app.Fragment
 import com.example.meowtea.database.AppDatabase
 import com.example.meowtea.database.MilkTea
 import com.example.meowtea.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,12 +43,12 @@ class MainActivity : AppCompatActivity() {
         val milktea3 = MilkTea(3, "Dark Choco", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
         val milktea4 = MilkTea(4, "Okinawa", 49.99, "res/drawable/noun_bubble_milk_tea_2216050.xml")
 
-        GlobalScope.launch(Dispatchers.IO){
+        /*GlobalScope.launch(Dispatchers.IO){
             milkTeaDao.insert(milktea1)
             milkTeaDao.insert(milktea2)
             milkTeaDao.insert(milktea3)
             milkTeaDao.insert(milktea4)
-        }
+        }*/
     }
 
     private fun replaceFragment(fragment: Fragment) {
