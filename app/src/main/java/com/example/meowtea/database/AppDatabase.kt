@@ -12,7 +12,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         fun create(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, "milktea.db")
-                .createFromAsset("databases/milktea.db").build()
+                .createFromAsset("databases/MilkTea.db").build()
         }
     }
 }

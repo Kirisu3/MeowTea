@@ -9,12 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meowtea.database.MilkTea
 
-class MilkTeaAdapter(private val milkTeas: List<MilkTea>) : RecyclerView.Adapter<MilkTeaAdapter.ViewHolder>() {
+class MilkTeaAdapter(private var milkTeas: List<MilkTea>) : RecyclerView.Adapter<MilkTeaAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewName: TextView = itemView.findViewById(R.id.tv_title)
 
         val imageView: ImageView = itemView.findViewById(R.id.ivProduct)
+    }
+
+    fun updateData(newMilkTeas: List<MilkTea>) {
+        milkTeas = newMilkTeas
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
