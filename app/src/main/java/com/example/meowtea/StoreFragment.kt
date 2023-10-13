@@ -22,18 +22,6 @@ class StoreFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
 
-        /* GlobalScope.launch(Dispatchers.Main) {
-            val milkTeaDao = AppDatabase.getInstance(requireContext()).milkTeaDao()
-            val milkTeaList: List<MilkTea> = withContext(Dispatchers.IO) {
-                milkTeaDao.getAllMilkTeas()
-            }
-
-            val adapter = MilkTeaAdapter(milkTeaList)
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = adapter
-            adapter.notifyDataSetChanged()
-        } */
-
         return view
     }
 }
