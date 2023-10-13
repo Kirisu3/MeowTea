@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="nav_scanner"
+    <item
+        android:id="scanner"
         android:icon="@drawable/ic_scanner"
         android:title="Scan Here"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
 
 </menu>
