@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meowtea.database.AppDatabase
+import com.example.meowtea.database.MilkTea
 import com.example.meowtea.databinding.FragmentStoreBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +32,7 @@ class StoreFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val milkTeaDao = milkTeaDatabase.milkTeaDao()
 
-        val milkTeaAdapter = MilkTeaAdapter(ArrayList()) { milkTea ->
+        val milkTeaAdapter = MilkTeaAdapter(ArrayList()) { milkTea: MilkTea ->
             val detailFragment = DetailFragment()
 
             val args = Bundle()

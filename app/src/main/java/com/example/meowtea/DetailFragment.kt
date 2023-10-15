@@ -1,6 +1,6 @@
 package com.example.meowtea
 
-import MilkTea
+import com.example.meowtea.database.MilkTea
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
