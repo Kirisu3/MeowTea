@@ -1,6 +1,6 @@
 package com.example.meowtea
 
-import MilkTea
+import com.example.meowtea.database.MilkTea
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
