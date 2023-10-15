@@ -1,5 +1,6 @@
 package com.example.meowtea.database
 
+import com.example.meowtea.database.MilkTea
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
