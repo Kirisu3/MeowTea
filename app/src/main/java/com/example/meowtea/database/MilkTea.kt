@@ -1,3 +1,5 @@
+package com.example.meowtea.database
+
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
