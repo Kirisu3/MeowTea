@@ -27,7 +27,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/nav_menu"
                 app:navigationIcon="@android:drawable/arrow_down_float"
-                app:title="Meowtea" />
+                app:title="MeowTea" />
 
 
         </com.google.android.material.appbar.AppBarLayout>

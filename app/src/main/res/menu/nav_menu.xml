@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="scanner"
+        android:id="@+id/btScanner"
         android:icon="@drawable/ic_scanner"
-        android:title="Scan Here"
+        android:title="@string/scan_here"
         app:showAsAction="ifRoom" />
 
 

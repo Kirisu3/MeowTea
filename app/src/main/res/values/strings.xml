@@ -6,4 +6,7 @@
     <string name="menu">Menu</string>
     <string name="Placeholder">placeholder</string>
     <string name="quantity">Quantity</string>
+    <string name="scan_here">Scan Here</string>
+    <string name="store">Store</string>
+    <string name="cart">Cart</string>
 </resources>

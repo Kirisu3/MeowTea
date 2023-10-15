@@ -1,15 +1,11 @@
 package com.example.meowtea
 
 import android.os.Bundle
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
-import com.example.meowtea.database.AppDatabase
-import com.example.meowtea.database.MilkTea
 import com.example.meowtea.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.cart -> {
                     replaceFragment(cartFragment)
                 }
+                //TODO scanner button id fragment replace
             }
             true
         }
