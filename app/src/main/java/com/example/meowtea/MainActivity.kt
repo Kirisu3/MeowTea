@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val storeFragment = StoreFragment()
     private val cartFragment = CartFragment()
+    private val detailFragment = DetailFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
        super.onCreate(savedInstanceState)
@@ -31,7 +32,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.cart -> {
                     replaceFragment(cartFragment)
                 }
-                //TODO scanner button id fragment replace
+                R.id.btScanner -> {
+                    replaceFragment(detailFragment)
+                    //TODO replaceFragment() qr scanner fragment
+                }
             }
             true
         }

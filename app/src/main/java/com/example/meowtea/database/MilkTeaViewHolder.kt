@@ -8,5 +8,5 @@ import com.example.meowtea.R
 
 class MilkTeaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textViewName: TextView = itemView.findViewById(R.id.tv_title)
-    val imageView: ImageView = itemView.findViewById(R.id.ivProduct)
+    //val imageView: ImageView = itemView.findViewById(R.id.ivProduct)
 }

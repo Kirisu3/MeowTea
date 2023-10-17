@@ -31,10 +31,10 @@ class MilkTeaAdapter(private var milkTeas: List<MilkTea>, private val onItemClic
         val milkTea = milkTeas[position]
         holder.textViewName.text = milkTea.name
 
-        // Load the image from the database using Glide
+        /* Load the image from the database using Glide
         Glide.with(holder.imageView.context)
             .load(milkTea.imagePath)
-            .into(holder.imageView)
+            .into(holder.imageView) */
 
         holder.itemView.setOnClickListener {
             onItemClick(milkTea)

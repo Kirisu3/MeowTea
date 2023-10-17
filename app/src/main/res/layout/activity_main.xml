@@ -25,10 +25,31 @@
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/nav_menu"
-                app:navigationIcon="@android:drawable/arrow_down_float"
-                app:title="MeowTea" />
+                app:menu="@menu/nav_menu" >
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="60dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/meowtealogo"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MeowTea"
+                        android:layout_toEndOf="@id/logo"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        />
+
+                </RelativeLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
     </FrameLayout>
@@ -43,12 +64,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="351dp"
-        android:src="@drawable/meowtealogo" />
-
 
 </RelativeLayout>
