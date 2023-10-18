@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.meowtea.database.MilkTea
 
 
@@ -35,9 +34,6 @@ class MilkTeaAdapter(private var milkTeas: List<MilkTea>, private val onItemClic
 
         Glide.with(holder.imageView.context)
             .load(milkTea.imagePath)
-            .skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .placeholder(R.drawable.mt_placeholder)
             .into(holder.imageView)
 
         holder.itemView.setOnClickListener {

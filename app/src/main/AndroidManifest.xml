@@ -12,9 +12,6 @@
         android:theme="@style/Theme.MeowTea"
         tools:targetApi="31">
         <activity
-            android:name=".RecycleView.TopBar"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.MeowTea"
             android:exported="true">
