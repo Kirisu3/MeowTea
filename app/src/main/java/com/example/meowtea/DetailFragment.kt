@@ -1,15 +1,18 @@
 package com.example.meowtea
 
-import com.example.meowtea.database.MilkTea
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.example.meowtea.database.MilkTea
 
 class DetailFragment : Fragment() {
+
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -17,14 +20,19 @@ class DetailFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detail, container, false)
 
-        val textViewName = view.findViewById<TextView>(R.id.textViewName)
-
+        val imageView = view.findViewById<ImageView>(R.id.detailImageView)
+        val nameTextView = view.findViewById<TextView>(R.id.detailNameTextView)
 
         val milkTea = arguments?.getParcelable<MilkTea>("milkTea")
-        if (milkTea != null) {
-            textViewName.text = milkTea.name
-        }
 
+        if (milkTea != null) {
+            nameTextView.text = milkTea.name
+
+            // Load the image using a library like Glide or Picasso
+            Glide.with(this)
+                .load(milkTea.imagePath)
+                .into(imageView)
+        }
 
         return view
     }
