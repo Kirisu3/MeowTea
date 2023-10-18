@@ -1,6 +1,5 @@
 package com.example.meowtea
 
-import com.example.meowtea.database.MilkTea
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.meowtea.database.MilkTea
 
 
 class MilkTeaAdapter(private var milkTeas: List<MilkTea>, private val onItemClick: (MilkTea) -> Unit) : RecyclerView.Adapter<MilkTeaAdapter.ViewHolder>() {
@@ -31,10 +32,13 @@ class MilkTeaAdapter(private var milkTeas: List<MilkTea>, private val onItemClic
         val milkTea = milkTeas[position]
         holder.textViewName.text = milkTea.name
 
-        /* Load the image from the database using Glide
+
         Glide.with(holder.imageView.context)
             .load(milkTea.imagePath)
-            .into(holder.imageView) */
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .placeholder(R.drawable.milktea_placeholder)
+            .into(holder.imageView)
 
         holder.itemView.setOnClickListener {
             onItemClick(milkTea)

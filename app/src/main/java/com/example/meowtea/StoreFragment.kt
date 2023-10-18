@@ -16,6 +16,7 @@ import kotlinx.coroutines.withContext
 
 class StoreFragment : Fragment() {
     private lateinit var binding: FragmentStoreBinding
+    private val milkTeas: List<MilkTea> = emptyList()
 
     private val milkTeaDatabase: AppDatabase by lazy {
         AppDatabase.create(requireContext())
@@ -32,22 +33,12 @@ class StoreFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val milkTeaDao = milkTeaDatabase.milkTeaDao()
 
-        val milkTeaAdapter = MilkTeaAdapter(ArrayList()) { milkTea: MilkTea ->
-            val detailFragment = DetailFragment()
-
-            val args = Bundle()
-            args.putParcelable("milkTea", milkTea)
-            detailFragment.arguments = args
-
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, detailFragment)
-                .addToBackStack(null)
-                .commit()
+        val milkTeaAdapter = MilkTeaAdapter(milkTeas) { milkTea ->
+            openDetailFragment(milkTea)
         }
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val milkTeas = milkTeaDao.getAll()
-
 
             withContext(Dispatchers.Main) {
                 milkTeaAdapter.updateData(milkTeas)
@@ -59,6 +50,21 @@ class StoreFragment : Fragment() {
 
         return binding.root
     }
+
+    // Inside your activity (e.g., MainActivity)
+    private fun openDetailFragment(milkTea: MilkTea) {
+        val fragment = DetailFragment()
+        val args = Bundle()
+        args.putParcelable("milkTea", milkTea)
+        fragment.arguments = args
+
+        // Replace the current fragment with the DetailFragment
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null) // Optionally add the transaction to the back stack
+            .commit()
+    }
+
 }
 
 
