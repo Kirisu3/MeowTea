@@ -37,7 +37,7 @@ class MilkTeaAdapter(private var milkTeas: List<MilkTea>, private val onItemClic
             .load(milkTea.imagePath)
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .placeholder(R.drawable.milktea_placeholder)
+            .placeholder(R.drawable.mt_placeholder)
             .into(holder.imageView)
 
         holder.itemView.setOnClickListener {

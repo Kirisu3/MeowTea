@@ -60,7 +60,7 @@ class StoreFragment : Fragment() {
 
         // Replace the current fragment with the DetailFragment
         parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
+            .replace(R.id.frame_layout, fragment)
             .addToBackStack(null) // Optionally add the transaction to the back stack
             .commit()
     }
