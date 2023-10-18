@@ -13,7 +13,7 @@ import com.example.meowtea.database.MilkTea
 
 class DetailFragment : Fragment() {
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "DiscouragedApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,7 +30,7 @@ class DetailFragment : Fragment() {
 
             // Load the image using a library like Glide or Picasso
             Glide.with(this)
-                .load(milkTea.imagePath)
+                .load(resources.getIdentifier(milkTea.imagePath, "drawable", requireContext().packageName))
                 .into(imageView)
         }
 
