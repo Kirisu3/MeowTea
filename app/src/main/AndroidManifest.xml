@@ -4,15 +4,17 @@
 
     <application
         android:allowBackup="true"
-        android:label="MeowTea"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:label="MeowTea"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeowTea"
         tools:targetApi="31">
-        <activity android:name=".qrscanner.ScannerActivity"
+        <activity
+            android:name=".qrscanner.ScannerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

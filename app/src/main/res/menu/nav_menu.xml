@@ -6,7 +6,9 @@
         android:id="@+id/btScanner"
         android:icon="@drawable/ic_scanner"
         android:title="@string/scan_here"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:onClick="onBtScannerClick"
+        />
 
 
 </menu>
