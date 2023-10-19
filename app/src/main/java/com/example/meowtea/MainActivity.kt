@@ -1,11 +1,14 @@
 package com.example.meowtea
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.example.meowtea.databinding.ActivityMainBinding
-
+import com.example.meowtea.qrscanner.ScannerActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +44,21 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.nav_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.btScanner) {
+            // Launch the com.example.meowtea.qrscanner.ScannerActivity when "btScanner" is clicked
+            val intent = Intent(this, ScannerActivity::class.java)
+            startActivity(intent)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
