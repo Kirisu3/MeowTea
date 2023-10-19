@@ -19,7 +19,7 @@ class ScannerActivity : AppCompatActivity() {
         captureManager.initializeFromIntent(intent, savedInstanceState)
         captureManager.decode()
 
-        val barcodeCallback = MyBarcodeCallback() // Create an instance of your BarcodeCallback class
+        val barcodeCallback = MyBarcodeCallback() // instance
         barcodeView.decodeSingle(barcodeCallback)
     }
 

@@ -35,10 +35,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.cart -> {
                     replaceFragment(cartFragment)
                 }
-                R.id.btScanner -> {
-                    replaceFragment(detailFragment)
-                    //TODO replaceFragment() qr scanner fragment
-                }
             }
             true
         }
