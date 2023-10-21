@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import com.bumptech.glide.Glide
 import com.example.meowtea.database.MilkTea
 
@@ -27,22 +27,29 @@ class DetailFragment : Fragment() {
         val imageView = view.findViewById<ImageView>(R.id.detailImageView)
         val nameTextView = view.findViewById<TextView>(R.id.detailNameTextView)
         val btOrder = view.findViewById<Button>(R.id.Order)
-        btOrder.setOnClickListener{
 
-        }
         val milkTea = arguments?.getParcelable<MilkTea>("milkTea")
 
 
         if (milkTea != null) {
             nameTextView.text = milkTea.name
-
-            // Load the image using a library like Glide or Picasso
             Glide.with(this)
                 .load(resources.getIdentifier(milkTea.imagePath, "drawable", requireContext().packageName))
                 .into(imageView)
         }
 
+        btOrder.setOnClickListener{
+            val itemName = nameTextView.text.toString()
+            val itemImageResId = resources.getIdentifier(milkTea?.imagePath, "drawable", requireContext().packageName)
+
+            val cartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as CartFragment
+            cartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+
+            Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
+        }
+
         return view
     }
+
 
 }

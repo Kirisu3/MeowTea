@@ -31,7 +31,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.cart -> {
-                    replaceFragment(cartFragment)
+                    val existingCartFragment = supportFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
+                    if (existingCartFragment != null) {
+                        replaceFragment(existingCartFragment)
+                    } else {
+                        val newCartFragment = CartFragment()
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.add(R.id.frame_layout, newCartFragment, "cartFragment")
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+                        replaceFragment(newCartFragment)
+                    }
                 }
             }
             true
