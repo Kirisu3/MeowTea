@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/nata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"

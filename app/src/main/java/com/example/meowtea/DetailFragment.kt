@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -26,6 +27,8 @@ class DetailFragment : Fragment() {
 
         val imageView = view.findViewById<ImageView>(R.id.detailImageView)
         val nameTextView = view.findViewById<TextView>(R.id.detailNameTextView)
+        val pearlCheckBox = view.findViewById<CheckBox>(R.id.pearl)
+        val nataCheckBox = view.findViewById<CheckBox>(R.id.nata)
         val btOrder = view.findViewById<Button>(R.id.Order)
 
         val milkTea = arguments?.getParcelable<MilkTea>("milkTea")
@@ -38,12 +41,21 @@ class DetailFragment : Fragment() {
                 .into(imageView)
         }
 
+
         btOrder.setOnClickListener{
             val fragmentManager = requireActivity().supportFragmentManager
             val storeFragment = StoreFragment()
 
             val itemName = nameTextView.text.toString()
             val itemImageResId = resources.getIdentifier(milkTea?.imagePath, "drawable", requireContext().packageName)
+            val itemPrice = if (pearlCheckBox.isChecked && nataCheckBox.isChecked) {
+                50
+            } else if (nataCheckBox.isChecked || pearlCheckBox.isChecked) {
+                40
+            } else {
+                30
+            }
+            val cartItem = CartItem(itemName, itemImageResId,itemPrice)
 
             val existingCartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
             if (existingCartFragment != null) {
@@ -55,7 +67,7 @@ class DetailFragment : Fragment() {
                 transaction.addToBackStack(null)
                 transaction.commit()
 
-                newCartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+                newCartFragment.addItemToCart(CartItem(itemName, itemImageResId, itemPrice))
             }
 
             Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
