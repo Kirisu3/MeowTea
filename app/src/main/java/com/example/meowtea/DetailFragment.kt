@@ -48,18 +48,22 @@ class DetailFragment : Fragment() {
 
             val itemName = nameTextView.text.toString()
             val itemImageResId = resources.getIdentifier(milkTea?.imagePath, "drawable", requireContext().packageName)
-            val itemPrice = if (pearlCheckBox.isChecked && nataCheckBox.isChecked) {
-                50
-            } else if (nataCheckBox.isChecked || pearlCheckBox.isChecked) {
-                40
-            } else {
-                30
+            var extraCost = 0
+
+            if (pearlCheckBox.isChecked) {
+                extraCost += 10
             }
+
+            if (nataCheckBox.isChecked) {
+                extraCost += 10
+            }
+
+            val itemPrice = 30 + extraCost
             val cartItem = CartItem(itemName, itemImageResId,itemPrice)
 
             val existingCartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
             if (existingCartFragment != null) {
-                existingCartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+                existingCartFragment.addItemToCart(CartItem(itemName, itemImageResId, itemPrice))
             } else {
                 val newCartFragment = CartFragment()
                 val transaction = parentFragmentManager.beginTransaction()

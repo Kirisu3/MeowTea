@@ -20,7 +20,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="567dp"
+            android:layout_height="566dp"
             android:layout_marginTop="12dp" />
 
     </FrameLayout>
@@ -33,6 +33,17 @@
         android:text="Generate QR Code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frame_layout" />
+
+    <TextView
+        android:id="@+id/totalPriceTextView"
+        android:layout_width="260dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="596dp"
+        android:text="Total: ₱0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frame_layout" />
 
