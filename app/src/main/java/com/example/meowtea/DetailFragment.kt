@@ -61,10 +61,15 @@ class DetailFragment : Fragment() {
             Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
 
 
-            fragmentManager.beginTransaction()
-                .replace(R.id.frame_layout, storeFragment)
-                .addToBackStack(null)
-                .commit()
+            val enterAnim = R.anim.enter_from_right // Create this animation XML
+            val exitAnim = R.anim.exit_to_left   // Create this animation XML
+
+            val transaction = fragmentManager.beginTransaction()
+            transaction.setCustomAnimations(enterAnim, exitAnim, enterAnim, exitAnim)
+
+            transaction.replace(R.id.frame_layout, storeFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
 
         return view
