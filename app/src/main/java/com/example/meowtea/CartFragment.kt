@@ -27,6 +27,8 @@ class CartFragment : Fragment() {
         recyclerView.adapter = cartAdapter
 
         return view
+
+
     }
 
     fun addItemToCart(item: CartItem) {

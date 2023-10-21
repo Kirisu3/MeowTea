@@ -39,13 +39,32 @@ class DetailFragment : Fragment() {
         }
 
         btOrder.setOnClickListener{
+            val fragmentManager = requireActivity().supportFragmentManager
+            val storeFragment = StoreFragment()
+
             val itemName = nameTextView.text.toString()
             val itemImageResId = resources.getIdentifier(milkTea?.imagePath, "drawable", requireContext().packageName)
 
-            val cartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as CartFragment
-            cartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+            val existingCartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
+            if (existingCartFragment != null) {
+                existingCartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+            } else {
+                val newCartFragment = CartFragment()
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.add(R.id.frame_layout, newCartFragment, "cartFragment")
+                transaction.addToBackStack(null)
+                transaction.commit()
+
+                newCartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+            }
 
             Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
+
+
+            fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, storeFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         return view
