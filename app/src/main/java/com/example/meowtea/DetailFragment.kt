@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.meowtea.database.MilkTea
 
 class DetailFragment : Fragment() {
+
+
 
     @SuppressLint("MissingInflatedId", "DiscouragedApi")
     override fun onCreateView(
@@ -22,18 +26,49 @@ class DetailFragment : Fragment() {
 
         val imageView = view.findViewById<ImageView>(R.id.detailImageView)
         val nameTextView = view.findViewById<TextView>(R.id.detailNameTextView)
+        val btOrder = view.findViewById<Button>(R.id.Order)
 
         val milkTea = arguments?.getParcelable<MilkTea>("milkTea")
 
+
         if (milkTea != null) {
             nameTextView.text = milkTea.name
-
-            // Load the image using a library like Glide or Picasso
             Glide.with(this)
                 .load(resources.getIdentifier(milkTea.imagePath, "drawable", requireContext().packageName))
                 .into(imageView)
         }
 
+        btOrder.setOnClickListener{
+            val fragmentManager = requireActivity().supportFragmentManager
+            val storeFragment = StoreFragment()
+
+            val itemName = nameTextView.text.toString()
+            val itemImageResId = resources.getIdentifier(milkTea?.imagePath, "drawable", requireContext().packageName)
+
+            val existingCartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
+            if (existingCartFragment != null) {
+                existingCartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+            } else {
+                val newCartFragment = CartFragment()
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.add(R.id.frame_layout, newCartFragment, "cartFragment")
+                transaction.addToBackStack(null)
+                transaction.commit()
+
+                newCartFragment.addItemToCart(CartItem(itemName, itemImageResId))
+            }
+
+            Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
+
+
+            fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, storeFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         return view
     }
+
+
 }

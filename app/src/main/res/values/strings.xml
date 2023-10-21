@@ -8,4 +8,7 @@
     <string name="scan_here">Scan Here</string>
     <string name="store">Store</string>
     <string name="cart">Cart</string>
+    <string name="nata_p10">Nata P10</string>
+    <string name="pearl_p10">Pearl P10</string>
+    <string name="add_ons">Add-ons</string>
 </resources>
