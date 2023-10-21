@@ -51,17 +51,17 @@ class StoreFragment : Fragment() {
         return binding.root
     }
 
-    // Inside your activity (e.g., MainActivity)
+
     private fun openDetailFragment(milkTea: MilkTea) {
         val fragment = DetailFragment()
         val args = Bundle()
         args.putParcelable("milkTea", milkTea)
         fragment.arguments = args
 
-        // Replace the current fragment with the DetailFragment
+
         parentFragmentManager.beginTransaction()
             .replace(R.id.frame_layout, fragment)
-            .addToBackStack(null) // Optionally add the transaction to the back stack
+            .addToBackStack(null)
             .commit()
     }
 

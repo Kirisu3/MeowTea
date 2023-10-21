@@ -59,20 +59,9 @@ class DetailFragment : Fragment() {
             }
 
             val itemPrice = 30 + extraCost
-            val cartItem = CartItem(itemName, itemImageResId,itemPrice)
+            val cartItem = CartItem(itemName, itemImageResId, itemPrice)
 
-            val existingCartFragment = parentFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
-            if (existingCartFragment != null) {
-                existingCartFragment.addItemToCart(CartItem(itemName, itemImageResId, itemPrice))
-            } else {
-                val newCartFragment = CartFragment()
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.add(R.id.frame_layout, newCartFragment, "cartFragment")
-                transaction.addToBackStack(null)
-                transaction.commit()
-
-                newCartFragment.addItemToCart(CartItem(itemName, itemImageResId, itemPrice))
-            }
+            CartManager.setPendingCartItem(cartItem)
 
             Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
 
