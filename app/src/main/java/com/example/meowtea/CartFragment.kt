@@ -30,17 +30,19 @@ class CartFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
-        val pendingCartItem = CartManager.getPendingCartItem()
-        if (pendingCartItem != null) {
-            addItemToCart(pendingCartItem)
-            CartManager.setPendingCartItem(null) // Clear the pending item
-        }
 
         totalPriceTextView = view.findViewById(R.id.totalPriceTextView)
         updateTotalPrice()
 
         recyclerView = view.findViewById(R.id.cartRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        val pendingCartItem = CartManager.getPendingCartItem()
+        if (pendingCartItem != null) {
+            addItemToCart(pendingCartItem)
+            CartManager.setPendingCartItem(null) // Clear the pending item
+        }
+
 
         cartAdapter = CartAdapter(cartItems) { position ->
             removeItem(position)
