@@ -8,7 +8,7 @@ class MyBarcodeCallback : BarcodeCallback {
     override fun barcodeResult(result: BarcodeResult?) {
         if (result != null) {
             val resultText = result.text
-            // Handle the scanned QR code result here
+            // Handle scanned QR code  here
         }
     }
 

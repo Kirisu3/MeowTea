@@ -2,7 +2,6 @@ package com.example.meowtea
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -17,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     private val storeFragment = StoreFragment()
     private val cartFragment = CartFragment()
     private val detailFragment = DetailFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
        super.onCreate(savedInstanceState)
         Thread.sleep(3000)
@@ -33,35 +31,34 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.cart -> {
-                    replaceFragment(cartFragment)
-                }
-                R.id.btScanner -> {
-                    replaceFragment(detailFragment)
-                    //TODO replaceFragment() qr scanner fragment
+                    val existingCartFragment = supportFragmentManager.findFragmentByTag("cartFragment") as? CartFragment
+                    if (existingCartFragment != null) {
+                        replaceFragment(existingCartFragment)
+                    } else {
+                        val newCartFragment = CartFragment()
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.add(R.id.frame_layout, newCartFragment, "cartFragment")
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+                        replaceFragment(newCartFragment)
+                    }
                 }
             }
             true
         }
 
-
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.btScanner) {
-            // Launch the com.example.meowtea.qrscanner.ScannerActivity when "btScanner" is clicked
-            val intent = Intent(this, ScannerActivity::class.java)
-            startActivity(intent)
-            return true
+    fun onBtScannerClick(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.btScanner -> {
+                val intent = Intent(this, ScannerActivity::class.java)
+                startActivity(intent)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 
 
 

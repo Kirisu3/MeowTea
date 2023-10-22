@@ -7,51 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".CartFragment">
 
-    <ImageView
-        android:id="@+id/ivQRCode"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="130dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toTopOf="@+id/etData"
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="NotSibling">
 
-    <EditText
-        android:id="@+id/etData"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="100dp"
-        android:background="@null"
-        android:hint="Enter Data"
-        android:paddingStart="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivQRCode" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="567dp"
+            android:layout_marginTop="12dp" />
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="0dp"
-        android:layout_height="1.5dp"
-        android:background="#A4C639"
-        app:layout_constraintTop_toBottomOf="@id/etData"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btnGenerateQRcode"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="584dp"
         android:text="Generate QR Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view1" />
+        app:layout_constraintTop_toTopOf="@+id/frame_layout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

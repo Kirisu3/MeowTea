@@ -16,7 +16,8 @@
         android:id="@+id/rl_wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
+        android:padding="20dp"
+        >
 
         <ImageView
             android:id="@+id/ivProduct"
@@ -30,23 +31,30 @@
             android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/noun_bubble_milk_tea_2216050" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignTop="@id/ivProduct"
-            android:layout_alignBottom="@id/ivProduct"
-            android:layout_toEndOf="@id/ivProduct"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="213dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:text="Wintermelon"
-                android:textSize="35sp" />
 
-        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="24dp"
+            android:layout_toEndOf="@+id/ivProduct"
+            android:gravity="center"
+            android:text="Wintermelon"
+            android:textSize="30sp" />
+
+
     </RelativeLayout>
+    <ImageView
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:src="@drawable/paw"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="75dp"
+        />
 </androidx.cardview.widget.CardView>
