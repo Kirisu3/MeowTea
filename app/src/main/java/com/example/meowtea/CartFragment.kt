@@ -40,7 +40,7 @@ class CartFragment : Fragment() {
         val pendingCartItem = CartManager.getPendingCartItem()
         if (pendingCartItem != null) {
             addItemToCart(pendingCartItem)
-            CartManager.setPendingCartItem(null) // Clear the pending item
+            CartManager.setPendingCartItem(null)
         }
 
 
@@ -63,8 +63,6 @@ class CartFragment : Fragment() {
 
     fun addItemToCart(item: CartItem) {
         cartItems.add(item)
-
-        // Make sure the cartAdapter is not null before using it
         if (::cartAdapter.isInitialized) {
             cartAdapter.notifyItemInserted(cartItems.size - 1)
         }
@@ -99,6 +97,7 @@ class CartFragment : Fragment() {
         for (item in cartItems) {
             cartInfoBuilder.append("${item.itemName} - ₱${item.itemPrice}\n")
         }
+        cartInfoBuilder.append("$totalPriceTextView")
         return cartInfoBuilder.toString()
     }
 

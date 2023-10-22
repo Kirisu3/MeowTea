@@ -15,14 +15,13 @@ class MyBarcodeCallback (private val context: Context): BarcodeCallback {
     override fun barcodeResult(result: BarcodeResult?) {
         if (result != null) {
             val resultText = result.text
-            // Handle scanned QR code  here
             showCustomDialog(resultText)
         }
     }
 
 
     override fun possibleResultPoints(resultPoints: List<ResultPoint>?) {
-        // Handle possible result points if needed
+
     }
 
     private fun showCustomDialog(resultText: String) {

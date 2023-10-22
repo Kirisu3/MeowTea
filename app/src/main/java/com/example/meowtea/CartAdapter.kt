@@ -9,9 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CartAdapter(private val cartItems: List<CartItem>, private val removeItemListener: (Int) -> Unit) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
-
-    private lateinit var removeButton: Button
-
     inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemNameTextView: TextView = itemView.findViewById(R.id.tv_title)
         val itemImageView: ImageView = itemView.findViewById(R.id.ivProduct)

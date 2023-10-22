@@ -14,8 +14,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val storeFragment = StoreFragment()
-    private val cartFragment = CartFragment()
-    private val detailFragment = DetailFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
        super.onCreate(savedInstanceState)
         Thread.sleep(3000)
@@ -59,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
     private fun replaceFragment(fragment: Fragment) {

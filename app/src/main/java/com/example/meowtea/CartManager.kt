@@ -1,6 +1,4 @@
 package com.example.meowtea
-
-// CartManager.kt
 object CartManager {
     private var pendingCartItem: CartItem? = null
 

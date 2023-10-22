@@ -31,14 +31,11 @@ class MilkTeaAdapter(private var milkTeas: List<MilkTea>, private val onItemClic
         val milkTea = milkTeas[position]
         holder.textViewName.text = milkTea.name
 
-
-        // Get the resource identifier based on the string stored in the database
         val imageResourceName = milkTea.imagePath
         val resourceId = holder.imageView.context.resources.getIdentifier(
             imageResourceName, "drawable", holder.imageView.context.packageName
         )
 
-        // Load the drawable into the ImageView
         Glide.with(holder.imageView.context)
             .load(resourceId)
             .into(holder.imageView)
