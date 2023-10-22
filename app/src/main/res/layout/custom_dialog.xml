@@ -1,0 +1,24 @@
+<!-- custom_dialog.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scanned Result"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/buttonOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:onClick="onOKButtonClick"/>
+</LinearLayout>
